@@ -5,11 +5,9 @@ use std::fs;
 
 #[derive(Parser, Debug)]
 struct Args {
-    #[arg(short, long)]
     /// Relative path to font to upload
     input: String,
 
-    #[arg(short, long)]
     /// Desired name of font on Zebra printer. .TTF will be appended if not included
     name: String,
 
