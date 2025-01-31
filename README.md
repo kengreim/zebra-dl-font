@@ -12,5 +12,5 @@ Options:
 
 # Example
 ```
-./zebra-dl-font.exe --input .\GrapeNuts-Regular.ttf --name HAND.TTF
+./zebra-dl-font.exe .\GrapeNuts-Regular.ttf HAND.TTF
 ```
