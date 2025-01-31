@@ -6,12 +6,16 @@ use std::fs;
 #[derive(Parser, Debug)]
 struct Args {
     #[arg(short, long)]
+    /// Relative path to font to upload
     input: String,
 
     #[arg(short, long)]
+    /// Desired name of font on Zebra printer. .TTF will be appended if not included
     name: String,
 
-    #[arg(short, long, default_value_t = String::new())]
+    #[arg(short, long, default_value_t = String::new(), hide_default_value = true)]
+    /// Name of Zebra or other ZPL-capable printer to upload font to.
+    /// If omitted, the first printer that contains ZPL in its name will be used
     printer: String,
 }
 
