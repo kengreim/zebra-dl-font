@@ -37,7 +37,9 @@ fn main() {
     };
 
     if !args.name.to_ascii_uppercase().ends_with(".TTF") && args.name.contains('.') {
-        eprintln!("Name must either end in .TTF or not include a period (in which case .TTF will be appended");
+        eprintln!(
+            "Name must either end in .TTF or not include a period (in which case .TTF will be appended"
+        );
         return;
     }
 
@@ -60,6 +62,13 @@ fn main() {
         .as_bytes()
         .to_vec();
     command_bytes.append(&mut font_bytes);
+
+    let delete_command = format!("^XA^IDE:{cleaned_name}^FS^XZ").as_bytes().to_vec();
+    if let Err(e) = printer.print(&delete_command, None) {
+        eprintln!("Error while while deleting font: {e}");
+    } else {
+        println!("Successfully deleted font E:{cleaned_name}");
+    }
 
     if let Err(e) = printer.print(&command_bytes, None) {
         eprintln!("Error while transferring font: {e}");
